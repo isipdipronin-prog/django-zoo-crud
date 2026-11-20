@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Удаление сотрудника{% endblock %}
+{% block content %}
+<h1>Удалить сотрудника «{{ keeper.full_name }}»?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-del" type="submit">Удалить</button>
+    <a class="btn btn-back" href="{% url 'keeper_list' %}">Вернуться к списку сотрудников</a>
+</form>
+{% endblock %}

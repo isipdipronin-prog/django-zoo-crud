@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{ enclosure.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ enclosure.name }}</h1>
+
+{% if enclosure.photo %}
+    <img class="photo-large" src="{{ enclosure.photo.url }}" alt="{{ enclosure.name }}">
+{% endif %}
+
+<p><strong>Среда обитания:</strong> {{ enclosure.habitat }}</p>
+<p><strong>Площадь:</strong> {{ enclosure.area }} кв. м</p>
+<p><strong>Вместимость:</strong> {{ enclosure.capacity }} особей</p>
+<p><strong>Открыт для посетителей:</strong> {% if enclosure.is_open %}Да{% else %}Нет{% endif %}</p>
+<p><strong>Описание:</strong> {{ enclosure.description|default:"Не указано" }}</p>
+
+<a class="btn btn-back" href="{% url 'enclosure_list' %}">Вернуться к списку вольеров</a>
+<a class="btn btn-edit" href="{% url 'enclosure_update' enclosure.pk %}">Редактировать</a>
+<a class="btn btn-del" href="{% url 'enclosure_delete' enclosure.pk %}">Удалить</a>
+{% endblock %}

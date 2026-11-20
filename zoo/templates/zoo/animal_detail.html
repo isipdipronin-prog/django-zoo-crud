@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ animal.name }}{% endblock %}
+{% block content %}
+<h1>{{ animal.name }} ({{ animal.species }})</h1>
+{% if animal.photo %}<img class="photo-large" src="{{ animal.photo.url }}" alt="{{ animal.name }}">{% endif %}
+<p><strong>Описание:</strong> {{ animal.description|default:"Не указано" }}</p>
+<p><strong>Возраст:</strong> {{ animal.age }} лет</p>
+<p><strong>Вес:</strong> {{ animal.weight }} кг</p>
+<p><strong>В экспозиции:</strong> {% if animal.is_on_display %}Да{% else %}Нет{% endif %}</p>
+<p><strong>Класс животного:</strong> {{ animal.animal_class }}</p>
+<p><strong>Вольер:</strong> <a href="{% url 'enclosure_detail' animal.enclosure.pk %}">{{ animal.enclosure }}</a></p>
+<p><strong>Типы питания:</strong> {% for diet in animal.diets.all %}{{ diet.name }}{% if not forloop.last %}, {% endif %}{% empty %}Не указаны{% endfor %}</p>
+<p><strong>Ответственные смотрители:</strong> {% for keeper in animal.keepers.all %}<a href="{% url 'keeper_detail' keeper.pk %}">{{ keeper.full_name }}</a>{% if not forloop.last %}, {% endif %}{% empty %}Не назначены{% endfor %}</p>
+<p><strong>Дата поступления:</strong> {{ animal.arrival_date }}</p>
+<a class="btn btn-back" href="{% url 'animal_list' %}">Вернуться к списку животных</a>
+<a class="btn btn-edit" href="{% url 'animal_update' animal.pk %}">Редактировать</a>
+<a class="btn btn-del" href="{% url 'animal_delete' animal.pk %}">Удалить</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Веткарта: {{ vetcard.animal.name }}{% endblock %}
+
+{% block content %}
+<h1>Ветеринарная карта: {{ vetcard.animal }}</h1>
+<p><strong>Состояние здоровья:</strong> {{ vetcard.health_status }}</p>
+<p><strong>Прививки:</strong> {{ vetcard.vaccinations|default:"Нет записей" }}</p>
+<p><strong>Аллергии и противопоказания:</strong> {{ vetcard.allergies|default:"Не выявлены" }}</p>
+<p><strong>Дата последнего осмотра:</strong> {{ vetcard.last_checkup }}</p>
+
+<a class="btn btn-back" href="{% url 'vetcard_list' %}">Вернуться к списку веткарт</a>
+<a class="btn btn-edit" href="{% url 'vetcard_update' vetcard.pk %}">Редактировать</a>
+<a class="btn btn-del" href="{% url 'vetcard_delete' vetcard.pk %}">Удалить</a>
+{% endblock %}

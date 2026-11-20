@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ keeper.full_name }}{% endblock %}
+
+{% block content %}
+<h1>{{ keeper.full_name }}</h1>
+
+{% if keeper.photo %}
+    <img class="photo-large" src="{{ keeper.photo.url }}" alt="{{ keeper.full_name }}">
+{% endif %}
+
+<p><strong>Должность:</strong> {{ keeper.position }}</p>
+<p><strong>Стаж работы:</strong> {{ keeper.experience_years }} лет</p>
+<p><strong>Телефон:</strong> {{ keeper.phone }}</p>
+<p><strong>О сотруднике:</strong> {{ keeper.bio|default:"Не указано" }}</p>
+
+<a class="btn btn-back" href="{% url 'keeper_list' %}">Вернуться к списку сотрудников</a>
+<a class="btn btn-edit" href="{% url 'keeper_update' keeper.pk %}">Редактировать</a>
+<a class="btn btn-del" href="{% url 'keeper_delete' keeper.pk %}">Удалить</a>
+{% endblock %}

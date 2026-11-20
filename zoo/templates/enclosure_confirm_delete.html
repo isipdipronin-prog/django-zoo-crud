@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Удаление вольера{% endblock %}
+
+{% block content %}
+<h1>Удалить вольер «{{ enclosure.name }}»?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-del" type="submit">Удалить</button>
+    <a class="btn btn-back" href="{% url 'enclosure_list' %}">Вернуться к списку вольеров</a>
+</form>
+{% endblock %}

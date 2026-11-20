@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Удаление записи кормления{% endblock %}
+{% block content %}
+<h1>Удалить запись кормления для «{{ feeding.animal.name }}» ({{ feeding.feeding_time }})?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-del" type="submit">Удалить</button>
+    <a class="btn btn-back" href="{% url 'feeding_list' %}">Вернуться к расписанию</a>
+</form>
+{% endblock %}

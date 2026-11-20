@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Главная — Зоопарк{% endblock %}
+{% block content %}
+<h1>Информационная система «Зоопарк»</h1>
+<p>Выберите раздел для просмотра и управления записями:</p>
+<ul>
+    <li><a href="{% url 'animal_list' %}">Животные</a> (записей: {{ animals_count }})</li>
+    <li><a href="{% url 'enclosure_list' %}">Вольеры</a> (записей: {{ enclosures_count }})</li>
+    <li><a href="{% url 'keeper_list' %}">Сотрудники</a> (записей: {{ keepers_count }})</li>
+    <li><a href="{% url 'vetcard_list' %}">Ветеринарные карты</a> (записей: {{ vetcards_count }})</li>
+    <li><a href="{% url 'feeding_list' %}">Расписание кормлений</a> (записей: {{ feedings_count }})</li>
+</ul>
+{% endblock %}

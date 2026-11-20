@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Кормление: {{ feeding.animal.name }}{% endblock %}
+{% block content %}
+<h1>Кормление животного: {{ feeding.animal }}</h1>
+<p><strong>Время кормления:</strong> {{ feeding.feeding_time }}</p>
+<p><strong>Рацион и размер порции:</strong> {{ feeding.food_details }}</p>
+<p><strong>Ответственный смотритель:</strong> {{ feeding.keeper }}</p>
+<p><strong>Примечания:</strong> {{ feeding.notes|default:"Нет" }}</p>
+<a class="btn btn-back" href="{% url 'feeding_list' %}">Вернуться к расписанию</a>
+<a class="btn btn-edit" href="{% url 'feeding_update' feeding.pk %}">Редактировать</a>
+<a class="btn btn-del" href="{% url 'feeding_delete' feeding.pk %}">Удалить</a>
+{% endblock %}
